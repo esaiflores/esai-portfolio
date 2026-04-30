@@ -1,203 +1,114 @@
-const personal = [
-  {
-    name: "Classroom Library Manager",
-    description:
-      "A library management system for teachers to organize their personal classroom libraries — track books, manage checkouts, and help students find great reads.",
-    tags: ["React", "Personal Project"],
-    status: "In Progress",
-  },
-]
-
-const enterprise = [
-  {
-    company: "D.R. Horton",
-    name: "Customer Portal Redesign",
-    description:
-      "Full UI redesign of the homebuyer-facing portal from scratch, responsive across desktop and mobile, built to spec with navigation, document access, and video integration.",
-  },
-  {
-    company: "D.R. Horton",
-    name: "Vendor Suite",
-    description:
-      "Company-wide vendor management platform supporting D.R. Horton's field and vendor operations across properties.",
-  },
-  {
-    company: "American Airlines",
-    name: "aa.com Pay & Review",
-    description:
-      "Flight booking Pay and Review page — a high-traffic consumer feature used by millions of travelers. Built with Angular, TypeScript, and Java.",
-  },
-  {
-    company: "D.R. Horton",
-    name: "JSA Scheduling App",
-    description:
-      "Internal job scheduling application coordinating work orders, maintenance tasks, and scheduling across properties and job sites.",
-  },
-]
+import { Link } from "react-router-dom"
+import { projects } from "../data/projects"
+import FadeIn from "../components/FadeIn"
 
 export default function Projects() {
-  return (
-    <div style={{ paddingInline: "2rem", paddingBlock: "4rem", textAlign: "left" }}>
-      <p
-        style={{
-          fontSize: "0.75rem",
-          textTransform: "uppercase",
-          letterSpacing: "0.1em",
-          marginBottom: "1rem",
-          fontWeight: 700,
-          color: "var(--accent)",
-        }}
-      >
-        Work
-      </p>
-      <h1
-        style={{
-          fontSize: "clamp(2rem, 4vw, 2.75rem)",
-          fontWeight: 800,
-          letterSpacing: "-0.5px",
-          color: "var(--text-h)",
-          margin: "0 0 56px",
-        }}
-      >
-        Projects
-      </h1>
+  const featured = projects[0]
+  const rest = projects.slice(1)
 
-      {/* Personal */}
-      <p
-        style={{
-          fontSize: "0.75rem",
-          textTransform: "uppercase",
-          letterSpacing: "0.1em",
-          marginBottom: "1.25rem",
-          fontWeight: 600,
-          color: "var(--text)",
-        }}
-      >
-        Personal
-      </p>
-      <div className="grid-cols-responsive-2" style={{ gap: "1rem", marginBottom: "4rem" }}>
-        {personal.map((p) => (
-          <div
-            key={p.name}
-            style={{
-              padding: "1.75rem",
-              borderRadius: "1rem",
-              background: "var(--card-bg)",
-              border: "1px solid var(--border)",
-              borderLeft: "3px solid var(--accent)",
-            }}
-          >
-            <div
-              style={{
-                display: "flex",
-                alignItems: "flex-start",
-                justifyContent: "space-between",
-                gap: "1rem",
-                marginBottom: "0.75rem",
-              }}
-            >
-              <p style={{ fontWeight: 700, fontSize: "1rem", color: "var(--text-h)" }}>
-                {p.name}
-              </p>
-              <span
-                style={{
-                  fontSize: "0.75rem",
-                  paddingInline: "0.625rem",
-                  paddingBlock: "0.25rem",
-                  borderRadius: "9999px",
-                  flexShrink: 0,
-                  fontWeight: 600,
-                  background: "var(--accent-bg)",
-                  color: "var(--accent)",
-                  border: "1px solid var(--accent-border)",
-                }}
-              >
-                {p.status}
-              </span>
+  return (
+    <div className="projects">
+
+      <FadeIn>
+        <div className="projects__header">
+          <p className="section-label">Projects</p>
+          <h1 className="projects__title">Personal Work</h1>
+          <p className="projects__subtitle">
+            Side projects and builds outside of my day job — from full-stack apps to algorithm practice.
+          </p>
+        </div>
+      </FadeIn>
+
+      {/* Featured project — big hero card */}
+      <FadeIn delay={0.1}>
+        <Link to={featured.to} className="project-featured">
+          <div className="project-featured__img-wrap">
+            <img
+              src={featured.image || featured.placeholder}
+              alt={featured.title}
+              className="project-featured__img"
+            />
+            <div className="project-featured__overlay" />
+          </div>
+          <div className="project-featured__body">
+            <div className="project-featured__meta">
+              {featured.status && (
+                <span className="project-status project-status--active">{featured.status}</span>
+              )}
             </div>
-            <p
-              style={{
-                fontSize: "0.875rem",
-                lineHeight: 1.625,
-                marginBottom: "1.25rem",
-                color: "var(--text)",
-              }}
-            >
-              {p.description}
-            </p>
-            <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
-              {p.tags.map((tag) => (
-                <span
-                  key={tag}
-                  style={{
-                    fontSize: "0.75rem",
-                    paddingInline: "0.625rem",
-                    paddingBlock: "0.25rem",
-                    borderRadius: "9999px",
-                    background: "var(--accent-bg)",
-                    color: "var(--accent)",
-                  }}
-                >
-                  {tag}
-                </span>
+            <h2 className="project-featured__title">{featured.title}</h2>
+            <p className="project-featured__desc">{featured.description}</p>
+            <div className="project-featured__tags">
+              {featured.tags.slice(0, 5).map(tag => (
+                <span key={tag} className="skill-pill">{tag}</span>
               ))}
             </div>
+            <span className="project-featured__cta">View project →</span>
           </div>
+        </Link>
+      </FadeIn>
+
+      {/* Rest of projects grid */}
+      <div className="projects__grid">
+        {rest.map((project, i) => (
+          <FadeIn key={project.id} delay={i * 0.1}>
+            <Link to={project.to} className="project-card">
+              <div className="project-card__img-wrap">
+                <img
+                  src={project.image || project.placeholder}
+                  alt={project.title}
+                  className="project-card__img"
+                />
+                <div className="project-card__img-overlay" />
+              </div>
+              <div className="project-card__body">
+                <div className="project-card__top">
+                  <p className="project-card__title">{project.title}</p>
+                  {project.status && (
+                    <span className={`project-status${project.status === "In Development" ? " project-status--active" : ""}`}>
+                      {project.status}
+                    </span>
+                  )}
+                </div>
+                <p className="project-card__desc">{project.description}</p>
+                <div className="project-card__tags">
+                  {project.tags.slice(0, 3).map(tag => (
+                    <span key={tag} className="skill-pill">{tag}</span>
+                  ))}
+                  {project.tags.length > 3 && (
+                    <span className="skill-pill">+{project.tags.length - 3}</span>
+                  )}
+                </div>
+                <div className="project-card__links">
+                  {project.github && (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="project-card__link"
+                      onClick={e => e.stopPropagation()}
+                    >
+                      GitHub ↗
+                    </a>
+                  )}
+                  {project.live && (
+                    <a
+                      href={project.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="project-card__link"
+                      onClick={e => e.stopPropagation()}
+                    >
+                      Live ↗
+                    </a>
+                  )}
+                </div>
+              </div>
+            </Link>
+          </FadeIn>
         ))}
       </div>
 
-      {/* Enterprise */}
-      <p
-        style={{
-          fontSize: "0.75rem",
-          textTransform: "uppercase",
-          letterSpacing: "0.1em",
-          marginBottom: "1.25rem",
-          fontWeight: 600,
-          color: "var(--text)",
-        }}
-      >
-        Enterprise
-      </p>
-      <div className="grid-cols-responsive-2" style={{ gap: "1rem" }}>
-        {enterprise.map((p) => (
-          <div
-            key={p.name}
-            style={{
-              padding: "1.5rem",
-              borderRadius: "0.75rem",
-              background: "var(--card-bg)",
-              border: "1px solid var(--border)",
-            }}
-          >
-            <p
-              style={{
-                fontSize: "0.75rem",
-                textTransform: "uppercase",
-                letterSpacing: "0.05em",
-                marginBottom: "0.5rem",
-                fontWeight: 600,
-                color: "var(--accent)",
-              }}
-            >
-              {p.company}
-            </p>
-            <p
-              style={{
-                marginBottom: "0.5rem",
-                fontWeight: 600,
-                fontSize: "0.95rem",
-                color: "var(--text-h)",
-              }}
-            >
-              {p.name}
-            </p>
-            <p style={{ fontSize: "0.875rem", lineHeight: 1.625, color: "var(--text)" }}>
-              {p.description}
-            </p>
-          </div>
-        ))}
-      </div>
     </div>
   )
 }

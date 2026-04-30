@@ -88,6 +88,50 @@ export const projects = [
     placeholder: "https://picsum.photos/seed/library/800/500",
     to: "/projects/library-manager",
     status: "In Development",
+    github: null,
+    live: null,
+  },
+  {
+    id: "gigmatch",
+    company: "Personal Project",
+    title: "GigMatch",
+    description:
+      "A full-stack web platform connecting musicians and venues in real time across multiple cities. Musicians can fill spots for upcoming gigs or find venues in need of musical talent.",
+    tags: ["Java", "Spring Boot", "MySQL", "JavaScript", "jQuery", "Bootstrap", "Filestack API", "Mapbox API"],
+    image: "/images/projects/gigmatch.png",
+    placeholder: "https://picsum.photos/seed/gigmatch/800/500",
+    to: "/projects/gigmatch",
+    status: "Completed",
+    github: "https://github.com/GigMatch/GigMatch",
+    live: null,
+  },
+  {
+    id: "omdb",
+    company: "Personal Project",
+    title: "OMDb API Project",
+    description:
+      "A full-stack web application that lets users search any movie in the OMDB database, create accounts, log in, and bookmark their favorite films.",
+    tags: ["Java", "MySQL", "JavaScript", "jQuery", "HTML", "CSS", "Bootstrap", "OMDb API"],
+    image: "/images/projects/omdb.png",
+    placeholder: "https://picsum.photos/seed/omdb/800/500",
+    to: "/projects/omdb",
+    status: "Completed",
+    github: "https://github.com/esaiflores/RNMProject",
+    live: null,
+  },
+  {
+    id: "wokelister",
+    company: "Personal Project",
+    title: "WokeLister",
+    description:
+      "A full-stack Java application using the MVC design pattern. Users can register, create and view business listings, post events, and manage their account information.",
+    tags: ["Java", "Spring MVC", "JSP", "Servlets", "MySQL", "BCrypt", "Bootstrap"],
+    image: "/images/projects/wokelister.png",
+    placeholder: "https://picsum.photos/seed/wokelister/800/500",
+    to: "/projects/wokelister",
+    status: "Completed",
+    github: "https://github.com/EEN-adlister/java-adlister",
+    live: null,
   },
 ]
 
@@ -99,7 +143,6 @@ export function getWorkById(id) {
   return allWork.find(item => item.id === id)
 }
 
-// Group experience by company
 export const experienceByCompany = experience.reduce((acc, item) => {
   if (!acc[item.company]) {
     acc[item.company] = {

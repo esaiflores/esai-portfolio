@@ -1,151 +1,156 @@
+import { useState } from "react"
+import FadeIn from "../components/FadeIn"
+
+const links = [
+  {
+    label: "Email",
+    value: "flores.esaijonathan@gmail.com",
+    href: "mailto:flores.esaijonathan@gmail.com",
+    icon: "@",
+  },
+  {
+    label: "LinkedIn",
+    value: "linkedin.com/in/esai-flores",
+    href: "https://www.linkedin.com/in/esai-flores",
+    icon: "in",
+  },
+  {
+    label: "GitHub",
+    value: "github.com/esaiflores",
+    href: "https://github.com/esaiflores",
+    icon: "</>",
+  },
+]
+
 export default function Contact() {
+  const [form, setForm] = useState({ name: "", email: "", message: "" })
+  const [sent, setSent] = useState(false)
+
+  const handleChange = (e) => {
+    setForm(f => ({ ...f, [e.target.name]: e.target.value }))
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    // Opens the user's mail client with the form data pre-filled
+    const subject = encodeURIComponent(`Portfolio contact from ${form.name}`)
+    const body = encodeURIComponent(`Name: ${form.name}\nEmail: ${form.email}\n\n${form.message}`)
+    window.location.href = `mailto:flores.esaijonathan@gmail.com?subject=${subject}&body=${body}`
+    setSent(true)
+  }
+
   return (
-    <div style={{ paddingInline: "2rem", paddingBlock: "4rem", textAlign: "left" }}>
-      <p
-        style={{
-          fontSize: "0.75rem",
-          textTransform: "uppercase",
-          letterSpacing: "0.1em",
-          marginBottom: "1rem",
-          fontWeight: 700,
-          color: "var(--accent)",
-        }}
-      >
-        Say Hello
-      </p>
-      <h1
-        style={{
-          fontSize: "clamp(2rem, 4vw, 2.75rem)",
-          fontWeight: 800,
-          letterSpacing: "-0.5px",
-          color: "var(--text-h)",
-          margin: "0 0 24px",
-        }}
-      >
-        Get in Touch
-      </h1>
-      <p
-        style={{
-          fontSize: "1rem",
-          marginBottom: "3.5rem",
-          lineHeight: 1.625,
-          color: "var(--text)",
-          maxWidth: "520px",
-        }}
-      >
-        I'm open to new opportunities and happy to connect. Whether you have a role in mind,
-        a project idea, or just want to talk tech — feel free to reach out.
-      </p>
+    <div className="contact">
 
-      <div style={{ display: "flex", flexDirection: "column", gap: "1rem", maxWidth: "480px" }}>
-        <a
-          href="mailto:flores.esaijonathan@gmail.com"
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "1rem",
-            padding: "1.25rem",
-            borderRadius: "0.75rem",
-            transition: "all 150ms cubic-bezier(0.4, 0, 0.2, 1)",
-            background: "var(--card-bg)",
-            border: "1px solid var(--border)",
-            textDecoration: "none",
-            color: "inherit",
-          }}
-          onMouseEnter={e => (e.currentTarget.style.borderColor = "var(--accent-border)")}
-          onMouseLeave={e => (e.currentTarget.style.borderColor = "var(--border)")}
-        >
-          <div
-            style={{
-              width: "2.5rem",
-              height: "2.5rem",
-              borderRadius: "0.5rem",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              flexShrink: 0,
-              background: "var(--accent-bg)",
-              color: "var(--accent)",
-              fontWeight: 700,
-              fontSize: "0.85rem",
-            }}
-          >
-            @
-          </div>
-          <div>
-            <p
-              style={{
-                fontSize: "0.75rem",
-                textTransform: "uppercase",
-                letterSpacing: "0.05em",
-                marginBottom: "0.25rem",
-                fontWeight: 600,
-                color: "var(--accent)",
-              }}
-            >
-              Email
-            </p>
-            <p style={{ fontSize: "0.875rem", fontWeight: 500, color: "var(--text-h)" }}>
-              flores.esaijonathan@gmail.com
-            </p>
-          </div>
-        </a>
+      <FadeIn>
+        <div className="contact__header">
+          <p className="section-label">Say hello</p>
+          <h1 className="contact__title">Get in Touch</h1>
+          <p className="contact__subtitle">
+            I'm open to new opportunities and happy to connect. Whether you have a role in mind,
+            a project idea, or just want to talk tech — feel free to reach out.
+          </p>
+        </div>
+      </FadeIn>
 
-        <a
-          href="https://www.linkedin.com/in/esai-flores"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "1rem",
-            padding: "1.25rem",
-            borderRadius: "0.75rem",
-            transition: "all 150ms cubic-bezier(0.4, 0, 0.2, 1)",
-            background: "var(--card-bg)",
-            border: "1px solid var(--border)",
-            textDecoration: "none",
-            color: "inherit",
-          }}
-          onMouseEnter={e => (e.currentTarget.style.borderColor = "var(--accent-border)")}
-          onMouseLeave={e => (e.currentTarget.style.borderColor = "var(--border)")}
-        >
-          <div
-            style={{
-              width: "2.5rem",
-              height: "2.5rem",
-              borderRadius: "0.5rem",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              flexShrink: 0,
-              background: "var(--accent-bg)",
-              color: "var(--accent)",
-              fontWeight: 700,
-              fontSize: "0.75rem",
-            }}
-          >
-            in
+      <div className="contact__grid">
+
+        {/* Contact Form */}
+        <FadeIn delay={0.1} className="contact-form-wrap">
+          <div className="contact-card">
+            <p className="section-label" style={{ marginBottom: "1.5rem" }}>Send a message</p>
+
+            {sent ? (
+              <div className="contact-form__success">
+                <div className="contact-form__success-icon">✓</div>
+                <p className="contact-form__success-title">Message sent!</p>
+                <p className="contact-form__success-sub">Your mail client should have opened. I'll get back to you soon.</p>
+                <button className="contact-form__reset" onClick={() => setSent(false)}>
+                  Send another
+                </button>
+              </div>
+            ) : (
+              <form className="contact-form" onSubmit={handleSubmit}>
+                <div className="contact-form__row">
+                  <div className="contact-form__field">
+                    <label className="contact-form__label">Name</label>
+                    <input
+                      type="text"
+                      name="name"
+                      value={form.name}
+                      onChange={handleChange}
+                      placeholder="Your name"
+                      required
+                      className="contact-form__input"
+                    />
+                  </div>
+                  <div className="contact-form__field">
+                    <label className="contact-form__label">Email</label>
+                    <input
+                      type="email"
+                      name="email"
+                      value={form.email}
+                      onChange={handleChange}
+                      placeholder="your@email.com"
+                      required
+                      className="contact-form__input"
+                    />
+                  </div>
+                </div>
+                <div className="contact-form__field">
+                  <label className="contact-form__label">Message</label>
+                  <textarea
+                    name="message"
+                    value={form.message}
+                    onChange={handleChange}
+                    placeholder="What's on your mind?"
+                    required
+                    rows={6}
+                    className="contact-form__input contact-form__textarea"
+                  />
+                </div>
+                <button type="submit" className="contact-form__submit">
+                  Send message →
+                </button>
+              </form>
+            )}
           </div>
-          <div>
-            <p
-              style={{
-                fontSize: "0.75rem",
-                textTransform: "uppercase",
-                letterSpacing: "0.05em",
-                marginBottom: "0.25rem",
-                fontWeight: 600,
-                color: "var(--accent)",
-              }}
-            >
-              LinkedIn
-            </p>
-            <p style={{ fontSize: "0.875rem", fontWeight: 500, color: "var(--text-h)" }}>
-              linkedin.com/in/esai-flores
-            </p>
-          </div>
-        </a>
+        </FadeIn>
+
+        {/* Contact Links */}
+        <div className="contact__links">
+          {links.map((link, i) => (
+            <FadeIn key={link.label} delay={0.15 + i * 0.08}>
+              <a
+                href={link.href}
+                target={link.href.startsWith("http") ? "_blank" : undefined}
+                rel="noopener noreferrer"
+                className="contact-link"
+              >
+                <div className="contact-link__icon">{link.icon}</div>
+                <div className="contact-link__body">
+                  <p className="contact-link__label">{link.label}</p>
+                  <p className="contact-link__value">{link.value}</p>
+                </div>
+                <span className="contact-link__arrow">↗</span>
+              </a>
+            </FadeIn>
+          ))}
+
+          {/* Availability card */}
+          <FadeIn delay={0.5}>
+            <div className="contact-availability">
+              <span className="availability__dot" />
+              <div>
+                <p className="contact-availability__title">Open to opportunities</p>
+                <p className="contact-availability__sub">Full-stack · Dallas–Fort Worth · Available now</p>
+              </div>
+            </div>
+          </FadeIn>
+        </div>
+
       </div>
+
     </div>
   )
 }
