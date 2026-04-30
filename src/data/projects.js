@@ -1,7 +1,6 @@
 // ─── Project Data ────────────────────────────────────────
 // Single source of truth for all work.
 // Images go in: public/images/projects/
-// Placeholder images use picsum.photos until real screenshots are added.
 
 export const experience = [
   {
@@ -15,7 +14,12 @@ export const experience = [
       "Led full-stack UI development in React and SCSS for a complete redesign of the customer portal web application, delivering a responsive experience across desktop and mobile following full SDLC practices.",
     tags: ["React", "SCSS", "C#", ".NET Core", "ASP.NET", "Azure DevOps", "CI/CD"],
     image: "/images/projects/customer-portal.png",
-    placeholder: "https://picsum.photos/seed/portal/800/500",
+    screenshots: [
+      "/images/projects/customer-portal-dashboard.png",
+      "/images/projects/customer-portal-search.png",
+      "/images/projects/customer-portal-videos.png",
+    ],
+    internal: false,
     to: "/experience/customer-portal",
   },
   {
@@ -29,7 +33,10 @@ export const experience = [
       "Contributed to Vendor Suite, a company-wide vendor management platform supporting homebuilding operations. Built and maintained RESTful APIs in C# and .NET Core following microservice architecture patterns.",
     tags: ["React", "C#", ".NET Core", "RESTful APIs", "Microservices", "JSON"],
     image: "/images/projects/vendor-suite.png",
-    placeholder: "https://picsum.photos/seed/vendor/800/500",
+    screenshots: [
+      "/images/projects/vendor-suite-dashboard.png",
+    ],
+    internal: false,
     to: "/experience/vendor-suite",
   },
   {
@@ -43,7 +50,8 @@ export const experience = [
       "Contributed to JSA, a job scheduling application used to coordinate work orders and maintenance across properties. Resolved bugs daily from Azure DevOps tickets across dev and production environments.",
     tags: ["React", "C#", ".NET Core", "Azure DevOps", "RESTful APIs"],
     image: "/images/projects/jsa.png",
-    placeholder: "https://picsum.photos/seed/jsa/800/500",
+    screenshots: [],
+    internal: true,
     to: "/experience/jsa",
   },
   {
@@ -57,7 +65,8 @@ export const experience = [
       "Contributed to the redesign of the flight booking Pay and Review page, a high-traffic consumer-facing feature used by millions of travelers on aa.com. Built front-end components in Angular and TypeScript and backend services in Java and Spring Boot.",
     tags: ["Angular", "TypeScript", "Java", "Spring Boot", "Docker", "Kubernetes", "Dynatrace", "CI/CD"],
     image: "/images/projects/aa.png",
-    placeholder: "https://picsum.photos/seed/airline/800/500",
+    screenshots: [],
+    internal: false,
     to: "/experience/aa-flight-booking",
   },
   {
@@ -71,7 +80,8 @@ export const experience = [
       "Contributed to full-stack web application development for a Christian streaming platform serving churches and congregations nationwide. Built and integrated features using Angular, TypeScript, and C# following microservice architecture patterns.",
     tags: ["Angular", "TypeScript", "C#", ".NET", "RESTful APIs", "CI/CD"],
     image: "/images/projects/rightnow.png",
-    placeholder: "https://picsum.photos/seed/rightnow/800/500",
+    screenshots: [],
+    internal: false,
     to: "/experience/rightnow-streaming",
   },
 ]
@@ -85,7 +95,8 @@ export const projects = [
       "A full-stack classroom library management app — currently in planning. Built with Java and Spring Boot on the backend with a React frontend.",
     tags: ["Java", "Spring Boot", "React", "MySQL", "REST APIs"],
     image: null,
-    placeholder: "https://picsum.photos/seed/library/800/500",
+    screenshots: [],
+    internal: false,
     to: "/projects/library-manager",
     status: "Coming Soon",
     github: null,
@@ -99,7 +110,8 @@ export const projects = [
       "Ongoing collection of data structures and algorithm solutions from NeetCode.io. Covers arrays, trees, graphs, dynamic programming, and more — actively updated.",
     tags: ["JavaScript", "Data Structures", "Algorithms", "LeetCode", "NeetCode"],
     image: null,
-    placeholder: "https://picsum.photos/seed/neetcode/800/500",
+    screenshots: [],
+    internal: false,
     to: "/projects/algorithm-practice",
     status: "Always Updating",
     github: "https://github.com/esaiflores/neetcode-submissions",
@@ -113,7 +125,8 @@ export const projects = [
       "A full-stack web platform connecting musicians and venues in real time across multiple cities. Musicians can fill spots for upcoming gigs or find venues in need of musical talent.",
     tags: ["Java", "Spring Boot", "MySQL", "JavaScript", "jQuery", "Bootstrap", "Filestack API", "Mapbox API"],
     image: "/images/projects/gigmatch.png",
-    placeholder: "https://picsum.photos/seed/gigmatch/800/500",
+    screenshots: [],
+    internal: false,
     to: "/projects/gigmatch",
     status: "Completed",
     github: "https://github.com/GigMatch/GigMatch",
@@ -127,7 +140,8 @@ export const projects = [
       "A full-stack web application that lets users search any movie in the OMDB database, create accounts, log in, and bookmark their favorite films.",
     tags: ["Java", "MySQL", "JavaScript", "jQuery", "HTML", "CSS", "Bootstrap", "OMDb API"],
     image: "/images/projects/omdb.png",
-    placeholder: "https://picsum.photos/seed/omdb/800/500",
+    screenshots: [],
+    internal: false,
     to: "/projects/omdb",
     status: "Completed",
     github: "https://github.com/esaiflores/RNMProject",
@@ -141,7 +155,8 @@ export const projects = [
       "A full-stack Java application using the MVC design pattern. Users can register, create and view business listings, post events, and manage their account information.",
     tags: ["Java", "Spring MVC", "JSP", "Servlets", "MySQL", "BCrypt", "Bootstrap"],
     image: "/images/projects/wokelister.png",
-    placeholder: "https://picsum.photos/seed/wokelister/800/500",
+    screenshots: [],
+    internal: false,
     to: "/projects/wokelister",
     status: "Completed",
     github: "https://github.com/EEN-adlister/java-adlister",
