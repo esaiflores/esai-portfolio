@@ -157,6 +157,12 @@
     color: #4ade80;
     border-color: rgba(74, 222, 128, 0.25);
   }
+
+  &--updating {
+  background: rgba(192, 132, 252, 0.1);
+  color: var(--accent);
+  border-color: var(--accent-border);
+}
 }
 
 /* ─── Projects Grid ──────────────────────────────────────── */

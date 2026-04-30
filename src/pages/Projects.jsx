@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom"
 import { projects } from "../data/projects"
 import FadeIn from "../components/FadeIn"
+import ProjectImage from "../components/ProjectImage"
 
 export default function Projects() {
   const featured = projects[0]
@@ -19,21 +20,19 @@ export default function Projects() {
         </div>
       </FadeIn>
 
-      {/* Featured project — big hero card */}
+      {/* Featured project */}
       <FadeIn delay={0.1}>
         <Link to={featured.to} className="project-featured">
           <div className="project-featured__img-wrap">
-            <img
-              src={featured.image || featured.placeholder}
-              alt={featured.title}
-              className="project-featured__img"
-            />
+            <ProjectImage project={featured} className="project-featured__img" />
             <div className="project-featured__overlay" />
           </div>
           <div className="project-featured__body">
             <div className="project-featured__meta">
               {featured.status && (
-                <span className="project-status project-status--active">{featured.status}</span>
+                <span className={`project-status${featured.status === "In Development" || featured.status === "Coming Soon" ? " project-status--active" : ""}`}>
+                  {featured.status}
+                </span>
               )}
             </div>
             <h2 className="project-featured__title">{featured.title}</h2>
@@ -54,18 +53,14 @@ export default function Projects() {
           <FadeIn key={project.id} delay={i * 0.1}>
             <Link to={project.to} className="project-card">
               <div className="project-card__img-wrap">
-                <img
-                  src={project.image || project.placeholder}
-                  alt={project.title}
-                  className="project-card__img"
-                />
+                <ProjectImage project={project} className="project-card__img" />
                 <div className="project-card__img-overlay" />
               </div>
               <div className="project-card__body">
                 <div className="project-card__top">
                   <p className="project-card__title">{project.title}</p>
                   {project.status && (
-                    <span className={`project-status${project.status === "In Development" ? " project-status--active" : ""}`}>
+                    <span className={`project-status${project.status === "Always Updating" ? " project-status--updating" : ""}`}>
                       {project.status}
                     </span>
                   )}

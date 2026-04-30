@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion } from "framer-motion"
 import { experience, projects } from "../data/projects"
 import FadeIn from "../components/FadeIn"
+import ProjectImage from "../components/ProjectImage"
 
 export default function Dashboard() {
   const [activeIndex, setActiveIndex] = useState(0)
@@ -33,10 +34,10 @@ export default function Dashboard() {
   return (
     <div className="dashboard">
 
-      {/* Featured Hero — no scroll animation, it's above the fold */}
+      {/* Featured Hero */}
       <section className="featured">
         <div className={`featured__bg${fading ? " featured__bg--fading" : ""}`}>
-          <img src={active.image || active.placeholder} alt={active.title} className="featured__img" />
+          <ProjectImage project={active} className="featured__img" />
           <div className="featured__overlay" />
         </div>
 
@@ -120,7 +121,7 @@ export default function Dashboard() {
           {experience.map((item, i) => (
             <FadeIn key={item.id} delay={i * 0.08} direction="up">
               <Link to={item.to} className="thumb-card">
-                <img src={item.image || item.placeholder} alt={item.title} className="thumb-card__img" />
+                <ProjectImage project={item} className="thumb-card__img" />
               </Link>
             </FadeIn>
           ))}
@@ -137,7 +138,7 @@ export default function Dashboard() {
             {projects.map((project, i) => (
               <FadeIn key={project.id} delay={i * 0.08} direction="up">
                 <Link to={project.to} className="thumb-card">
-                  <img src={project.image || project.placeholder} alt={project.title} className="thumb-card__img" />
+                  <ProjectImage project={project} className="thumb-card__img" />
                 </Link>
               </FadeIn>
             ))}
